@@ -1,0 +1,18 @@
+import telebot
+
+TOKEN ="8992451882:AAGBh4N2AoNBXY1-KUvaceaSm3FFqMEopyk"
+ADMIN_ID = '5800678502'
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(func=lambda msg: True)
+def forward_to_admin(msg):
+    if str(msg.chat.id) != ADMIN_ID:
+        bot.reply_to(msg, "👌🏻 تسلمت رسالتك، سيتم الرد عليها قريباً")
+        bot.forward_message(ADMIN_ID, msg.chat.id, msg.message_id)
+    else:
+        bot.reply_to(msg, "👌🏻 تم إرسال ردك")
+
+if name == 'main':
+    print("البوت يعمل الآن")
+    bot.infinity_polling()
